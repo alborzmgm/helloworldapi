@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "helloworldapi.fullname" . }}
+  labels:
+    {{- include "helloworldapi.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      nodePort: 30001
+      name: http
+    - port: 443
+      targetPort: https
+      nodePort: 30002
+      protocol: TCP
+      name: https   
+  selector:
+    {{- include "helloworldapi.selectorLabels" . | nindent 4 }}
