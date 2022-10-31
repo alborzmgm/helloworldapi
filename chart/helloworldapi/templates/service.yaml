@@ -12,10 +12,10 @@ spec:
       protocol: TCP
       nodePort: 30001
       name: http
-    - port: 443
-      targetPort: https
-      nodePort: 30002
-      protocol: TCP
-      name: https   
+    # - port: 443
+    #   targetPort: https
+    #   nodePort: 30002
+    #   protocol: TCP
+    #   name: https   
   selector:
     {{- include "helloworldapi.selectorLabels" . | nindent 4 }}
